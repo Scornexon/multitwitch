@@ -10,6 +10,7 @@
             width: 100vw;
             height: 100vh;
             background-color: black;
+            font-family: courier, serif;
         }
         .streams {
             display: flex;
@@ -19,6 +20,9 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
+        }
+        .hint {
+            color: white;
         }
         iframe {
             border: none;
@@ -37,6 +41,9 @@
             const elStreams = document.querySelector('.streams');
             const urlSearchParams = new URLSearchParams(window.location.search);
             const streams = urlSearchParams.get('streams') != undefined ? urlSearchParams.get('streams').split(',') : [];
+            if (streams.length <= 0) {
+                return;
+            }
             const vertical = urlSearchParams.get('vertical') != undefined ? 1 : 0;
             if (vertical) {
                 elStreams.style.flexDirection = 'column';
@@ -62,6 +69,12 @@
 </head>
 <body> 
     <div class="streams">
+        <div class="hint">
+            <p>Add streams in the URL Query Parameter "streams"</p>
+            <p>?streams=channel1,channel2,channel3,...</p>
+            <p>Set the flow direction of streams to vertical with the URL Query Parameter "vertical"</p>
+            <p>?vertical=1</p>
+        </div>
     </div>
 </body>
 </html>
