@@ -29,7 +29,7 @@
         function stream_template(name, w, h) {
             const width = (1 / Math.max(w, 1)) * 100;
             const height = (1 / Math.max(h, 1)) * 100;
-            return `<div class="stream" style="width:${width}%;height:${height}%;"><iframe src="https://player.twitch.tv/?channel=${name}&muted=true&parent=scornexon.github.io/multitwitch/" width="100%" height="100%" allowfullscreen></iframe></div>`;
+            return `<div class="stream" style="width:${width}%;height:${height}%;"><iframe src="https://player.twitch.tv/?channel=${name}&muted=true&parent=scornexon.github.io" width="100%" height="100%" allowfullscreen></iframe></div>`;
         }
 
         window.onload = function() {
