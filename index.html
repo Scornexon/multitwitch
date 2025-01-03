@@ -51,7 +51,7 @@
 
             let width = 1;
             let height = 1;
-            let next = vertical;
+            let next = 0;
             while (width * height < streams.length) {
                 if (next == 0) {
                     width++;
@@ -62,7 +62,11 @@
                 }
             }
             let innerHTML = '';
-            streams.forEach(stream => innerHTML += stream_template(stream, width, height));
+            streams.forEach((stream, index) => {
+                const row = Math.floor(index / width);
+                const w = Math.min(width, streams.length - (row * width));
+                innerHTML += !vertical ? stream_template(stream, w, height) : stream_template(stream, height, w);
+            });
             elStreams.innerHTML = innerHTML;
         }
     </script>
@@ -72,8 +76,10 @@
         <div class="hint">
             <p>Add streams in the URL Query Parameter "streams"</p>
             <p>?streams=channel1,channel2,channel3,...</p>
+            <p>Example: multitwitch?streams=streamer_1,streamer_2,...</p>
             <p>Set the flow direction of streams to vertical with the URL Query Parameter "vertical"</p>
-            <p>?vertical=1</p>
+            <p>?vertical</p>
+            <p>Example multitwitch?streams=streamer_1,streamer_2,...&vertical</p>
         </div>
     </div>
 </body>
